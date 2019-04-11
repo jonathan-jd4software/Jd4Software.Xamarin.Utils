@@ -10,9 +10,40 @@ Simple, powerful, cross-platform SQLite client and ORM for .NET - https://github
 
 ## Jd4Software.Xamarin.Utils.SQLite ##
 
-IDatabaseConnectionManager
-DatabaseConnectionManager
-Entity
-IRepository
-RepositoryBase
+Define a Simple data object for use in a SQLite database repository
+
+```
+using Jd4Software.Utils.SQLite;
+
+namespace Test.DataModels
+{
+    public class SimpleData : Entity
+    {
+        public string Name { get; set; }
+    }
+}
+```
+
+Instantiate a DatabaseConnectionManager for a database named "test.db" in the application's documents folder
+
+```
+var dbConMgr = new DatabaseConnectionManager(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "test.db");
+```
+Using the interface definition ```IDatabaseConnectionManager``` the created  DatabaseConnectionManager can be added into IOC like this for MvvmCross
+```
+Mvx.IoCProvider.RegisterSingleton<IDatabaseConnectionManager>(dbConMgr);
+```
+
+A repository for the ```SimpleData``` class can be added into IOC (MvvmCross again)
+```
+Mvx.IoCProvider.RegisterSingleton<IRepository<SimpleData>>(new RepositoryBase<SimpleData>(dbConMgr));
+```
+
+The repository can then easily be accessed in Service classes or ViewModels as appropriate.  The best way to do this would be via constructor injection.
+
+Dont forget that any database table needs to be created before any data access.  Here the rpeository is pulled out of IOC directly to create the table.
+
+```
+Mvx.IoCProvider.GetSingleton<IRepository<SimpleData>>().CreateTable();
+```
 
