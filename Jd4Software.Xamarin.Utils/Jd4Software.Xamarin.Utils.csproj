@@ -4,6 +4,13 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Copyright>©JD Software Solutions Ltd, 2019</Copyright>
+    <Description>Xamarin utilities</Description>
+    <PackageProjectUrl>https://github.com/jonathan-jd4software/Jd4Software.Xamarin.Utils</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/jonathan-jd4software/Jd4Software.Xamarin.Utils</RepositoryUrl>
+    <RepositoryType>Git</RepositoryType>
+    <Version>1.0.1</Version>
+    <PackageLicenseExpression></PackageLicenseExpression>
+    <PackageLicenseFile>License.txt</PackageLicenseFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,6 +19,13 @@
 
   <ItemGroup>
     <PackageReference Include="sqlite-net-pcl" Version="1.5.231" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="License.txt">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
